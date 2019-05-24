@@ -1,7 +1,9 @@
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.TapOptions.tapOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
+import static io.appium.java_client.touch.offset.ElementOption.element;
 import static java.time.Duration.ofSeconds;
+
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +24,11 @@ public class Swipegusture extends base{
 		driver.findElementByAndroidUIAutomator("text(\"Date Widgets\")").click();;
 		driver.findElementByAndroidUIAutomator("text(\"2. Inline\")").click();
 		driver.findElementByXPath("//*[@content-desc='10']").click();
+		TouchAction t = new TouchAction(driver);
+		//long press on element for 2 sec and move to another element and release.
+		WebElement first = driver.findElementByXPath("//*[@content-desc='15']");
+		WebElement second = driver.findElementByXPath("//*[@content-desc='45']");
+		t.longPress(longPressOptions().withElement(element(first)).withDuration(ofSeconds(2))).moveTo(element(second)).release().perform();
 		
 			}
 }
